@@ -8,7 +8,10 @@ import {
     sda,
     cabinet,
     traitement,
-    diagnostique
+    diagnostique,
+    
+   
+   
 } from "../main.js"
 export class Patient {
     constructor(nom, mal, argent, poche, stat) {
@@ -30,10 +33,10 @@ export class Patient {
 }
 
 export class Docteur {
-    constructor(nom, cabinet, caisse) {
+    constructor(nom, cabinet, argent) {
         this.nom = nom
         this.cabinet = cabinet
-        this.caisse = caisse
+        this.argent = argent
         // **Methodes**
         // In/ Patients
         this.inConsult = () => {
@@ -49,6 +52,7 @@ export class Docteur {
             switch (cabinet[0].mal) {
                 case "mal indenté":
                     console.log('Je vou prescrit -> ctrl+maj+f');
+                    // persona.trai = 
                     break;
                 case "unsave":
                     console.log('Je vou prescrit -> saveOnFocusChange');
@@ -67,13 +71,42 @@ export class Docteur {
                     break;
             }
            
+        }
+        // Payement
+        this.cashConsult = () => {
             console.log('Cela fera 50 euros pour la consultation.');
 
-            patient.argent -= 50;
-            this.argent += 50;
-        }
+            patients[0].argent -= 50;
+            docteur.argent += 50;
 
-        // Payement
+            console.log(docteur.argent);
+        }
+        // Out Patient
+        this.outConsult = () =>{
+            console.log(traitement);
+            console.log(cabinet[0].argent);
+            for (const key in traitement) {
+                // maladie == key maladie
+                // if (cabinet[0].argent >= traitement[key]) {
+                //     pharmacie.space.unshift(cabinet[0])
+                //     cabinet.shift
+                // }else {
+                //     cimetiere.space.unshift(cabinet[0])
+                //     cabinet.shift()
+                // }
+                console.log(key + " " + traitement[key]);
+            }
+            // if (cabinet[0].argent == traitement.prix) {
+                
+            //     pharmacie.space.unshift(cabinet[0])
+            //     cabinet.shift()
+            // }
+            // else {
+            //     cimetiere.space.unshift(cabinet[0])
+            //     cabinet.shift()
+            // }
+
+        }
     }
 }
 

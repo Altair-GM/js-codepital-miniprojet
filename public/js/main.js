@@ -2,7 +2,8 @@
 import {
     Patient,
     Docteur,
-    Chat
+    Chat,
+    
 } from "./Modules/personnages.js";
 import {
     Lieu
@@ -68,7 +69,8 @@ let diagnostique = {
 
 export {
     traitement,
-    diagnostique
+    diagnostique,
+    
 }
 /* -------------------------------- LetsPlay ------------------------------- */
 console.log(diagnostique);
@@ -79,9 +81,10 @@ console.log(sda);
 console.log("Le premier patient rentre voir le Dr");
 console.log(cabinet);
 docteur.inConsult()
-docteur.diagnostique(patients[0])
-
-
+docteur.diagnostique(cabinet[0])
+docteur.cashConsult()
+docteur.outConsult()
+console.log(cimetiere.space);
 
 
 
