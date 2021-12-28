@@ -3,14 +3,15 @@ import {
     Patient,
     Docteur,
     Chat,
-    
+    Traitement
+
 } from "./Modules/personnages.js";
 import {
     Lieu
 } from "./Modules/lieux.js";
 
 /* -------------------------------- Patients -------------------------------- */
-let patient1 = new Patient("Marcus", "mal indenté", 100, [], "malade")
+let patient1 = new Patient("Marcus", "mal indenté", 300, [], "malade")
 let patient2 = new Patient("Optimus", "unsave", 200, [], "malade")
 let patient3 = new Patient("Sangoku", "404", 80, [], "malade")
 let patient4 = new Patient("DarthVader", "azmatique", 110, [], "malade")
@@ -33,7 +34,7 @@ export {
 /* ---------------------------------- Lieux --------------------------------- */
 let street = new Lieu("Street", [])
 let hopital = new Lieu("Salle d'attente", [])
-let pharmacie = new Lieu("Aphoteek", [])
+let pharmacie = new Lieu("Aphoteek", [], 0)
 let cimetiere = new Lieu("CimetiéreLand", [])
 /* -------------------- Simplification space personnages -------------------- */
 var cabinet = docteur.cabinet
@@ -51,13 +52,18 @@ export {
 /* ------------------------------- Medicatment ------------------------------ */
 
 // {{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Traitement}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
-let traitement = {
-    "ctrl+maj+f": 60,
-    "saveOnFocusChange": 100,
-    "CheckLinkRelation": 35,
-    "Ventoline": 40,
-    "f12+doc": 20,
+let malID = new Traitement(`ctrl+maj+f`, 60);
+let unSave = new Traitement(`saveOnFocusChange`, 100);
+let e404 = new Traitement(`CheckLinkRelation`, 35);
+let azme = new Traitement(`Ventoline`, 40);
+let synErr = new Traitement(`f12+doc`, 20);
+let traitement = [malID,unSave,e404,azme,synErr]
+
+export{
+    
+    traitement
 }
+
 // {{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{Diagnostique}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
 let diagnostique = {
     "mal indenté": "ctrl+maj+f",
@@ -68,24 +74,25 @@ let diagnostique = {
 }
 
 export {
-    traitement,
+
     diagnostique,
-    
+
 }
 /* -------------------------------- LetsPlay ------------------------------- */
-console.log(diagnostique);
+
 console.log(`L'heur des consultations a commencé les patient sont rentrer dans la salle d'attente`);
 
 hopital.space.push(...patients)
-console.log(sda);
-console.log("Le premier patient rentre voir le Dr");
+console.log(`Salle d'attente --->${sda}`);
+console.log("Le premier patient rentre voir le Dr " + docteur.nom);
 console.log(cabinet);
 docteur.inConsult()
 docteur.diagnostique(cabinet[0])
 docteur.cashConsult()
+console.log(patient1);
+console.log(pharmacie.space);
 docteur.outConsult()
-console.log(cimetiere.space);
-
+pharmacie.pharmaPay()
 
 
 
@@ -96,15 +103,28 @@ console.log(cimetiere.space);
 /* ------------------------------- Laboratory ------------------------------- */
 
 
+            // for (const key in traitement) {
+                // maladie == key maladie
+                // if (cabinet[0].argent >= traitement[key]) {
+                //     pharmacie.space.unshift(cabinet[0])
+                //     cabinet.shift
+                // }else {
+                //     cimetiere.space.unshift(cabinet[0])
+                //     cabinet.shift()
+                // }
+                // console.log(key + " " + traitement[key]);
+            // }
 
-// switch (cabinet[0].mal) {
-//     case "mal indenté":
-//         console.log("ctrl+maj+f");
-//         break;
-//     case "unsave":
-//         console.log("saveOnFocusChange");
-//         break;
-//     default:
-//         console.log('erreur');
-//         break;
-// }
+
+
+
+
+            // if (cabinet[0].argent == traitement.prix) {
+                
+            //     pharmacie.space.unshift(cabinet[0])
+            //     cabinet.shift()
+            // }
+            // else {
+            //     cimetiere.space.unshift(cabinet[0])
+            //     cabinet.shift()
+            // }

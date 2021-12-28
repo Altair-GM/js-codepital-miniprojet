@@ -7,12 +7,21 @@ import {
     patients,
     sda,
     cabinet,
-    traitement,
     diagnostique,
+    traitement
     
    
    
 } from "../main.js"
+
+export class Traitement {
+    constructor(nom,prix){
+        this.nom = nom
+        this.prix = prix
+        
+    }
+}
+
 export class Patient {
     constructor(nom, mal, argent, poche, stat) {
         this.nom = nom
@@ -20,15 +29,7 @@ export class Patient {
         this.argent = argent
         this.poche = poche
         this.stat = stat
-        // **Methodes**
-        // deplacement
-        // this.deplace = (dep,arr) =>{
-        //     dep.splice(arr.indexOf(this),1)
-        //     console.log(this.nom,`se deplace vers `, arr.nom);
-        // }
-
-        // soigner
-        // payer
+      
     }
 }
 
@@ -52,64 +53,71 @@ export class Docteur {
             switch (cabinet[0].mal) {
                 case "mal indenté":
                     console.log('Je vou prescrit -> ctrl+maj+f');
-                    // persona.trai = 
+                    cabinet[0].poche.push("ctrl+maj+f")
+                    
                     break;
                 case "unsave":
                     console.log('Je vou prescrit -> saveOnFocusChange');
+                    cabinet[0].poche.push("saveOnFocusChange")
                     break;
                 case "404":
                     console.log("Je vou prescrit -> CheckLinkRelation");
+                    cabinet[0].poche.push("CheckLinkRelation")
                     break;
                 case "azmatique":
                     console.log("Je vou prescrit -> Ventoline");
+                    cabinet[0].poche.push("Ventoline")
                     break;
                 case "syntaxError":
                     console.log("Je vou prescrit -> f12+doc");
+                    cabinet[0].poche.push("f12+doc")
                     break;
                 default:
-                    console.log('Je vou prescrit -> break');
+                    console.log('break Appelle Ahyan !!! tu vas etre dans la merde putin !!');
                     break;
             }
            
         }
         // Payement
         this.cashConsult = () => {
-            console.log('Cela fera 50 euros pour la consultation.');
+            console.log(`Cela fera 50 euros pour la consultation Mr ${cabinet[0].nom}` );
 
             patients[0].argent -= 50;
             docteur.argent += 50;
 
-            console.log(docteur.argent);
+            console.log(`Dr. ${docteur.nom} as maintenant ${docteur.argent}€ au total`);
         }
         // Out Patient
         this.outConsult = () =>{
-            console.log(traitement);
-            console.log(cabinet[0].argent);
-            for (const key in traitement) {
-                // maladie == key maladie
-                // if (cabinet[0].argent >= traitement[key]) {
-                //     pharmacie.space.unshift(cabinet[0])
-                //     cabinet.shift
-                // }else {
-                //     cimetiere.space.unshift(cabinet[0])
-                //     cabinet.shift()
-                // }
-                console.log(key + " " + traitement[key]);
-            }
-            // if (cabinet[0].argent == traitement.prix) {
-                
-            //     pharmacie.space.unshift(cabinet[0])
-            //     cabinet.shift()
-            // }
-            // else {
-            //     cimetiere.space.unshift(cabinet[0])
-            //     cabinet.shift()
-            // }
+            
+            
+
+            
+                if (pharmacie.space <= 2) {
+                    console.log(`${cabinet[0].nom} se dirige vers la pharmacie pour se soigné`);
+                    pharmacie.space.unshift(cabinet[0])
+                    cabinet.shift()
+
+                }else{
+                    console.log("Trop de perosnnes dans la pharmacie les régles Covid sont en vigueure");
+                }
+            
+            
+        
 
         }
+
+        
     }
 }
-
+// traitement.forEach(el => {
+//     console.log(el.nom == 'Ventoline' );
+//    if (el.nom == "Ventoline") {
+//        console.log(el);
+       
+//    }
+    
+// });
 export class Chat {
     constructor(nom, ) {
         this.nom = nom
