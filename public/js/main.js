@@ -11,7 +11,7 @@ import {
 } from "./Modules/lieux.js";
 
 /* -------------------------------- Patients -------------------------------- */
-let patient1 = new Patient("Marcus", "mal indenté", 300, [], "malade")
+let patient1 = new Patient("Marcus", "mal indenté", 100, [], "malade")
 let patient2 = new Patient("Optimus", "unsave", 200, [], "malade")
 let patient3 = new Patient("Sangoku", "404", 80, [], "malade")
 let patient4 = new Patient("DarthVader", "azmatique", 110, [], "malade")
@@ -21,15 +21,13 @@ var patients = [patient1, patient2, patient3, patient4, patient5]
 export {
     patients
 }
+/* ---------------------------------- Chat ---------------------------------- */
+let chat = new Chat("Chat:")
+
 /* --------------------------------- Docteur -------------------------------- */
 var docteur = new Docteur("DR.Mahmoud", [], 0)
 export {
     docteur
-}
-/* ---------------------------------- Chat ---------------------------------- */
-let chat = new Chat("Chat:")
-export {
-    chat
 }
 /* ---------------------------------- Lieux --------------------------------- */
 let street = new Lieu("Street", [])
@@ -86,13 +84,18 @@ hopital.space.push(...patients)
 console.log(`Salle d'attente --->${sda}`);
 console.log("Le premier patient rentre voir le Dr " + docteur.nom);
 console.log(cabinet);
-docteur.inConsult()
-docteur.diagnostique(cabinet[0])
-docteur.cashConsult()
-console.log(patient1);
-console.log(pharmacie.space);
-docteur.outConsult()
-pharmacie.pharmaPay()
+chat.miau();
+patients.forEach(el => {
+    
+    docteur.inConsult(el)
+    docteur.diagnostique(cabinet[0])
+    docteur.cashConsult()
+    console.log(pharmacie.space);
+    docteur.outConsult()
+    pharmacie.pharmaPay()
+});
+
+
 
 
 
